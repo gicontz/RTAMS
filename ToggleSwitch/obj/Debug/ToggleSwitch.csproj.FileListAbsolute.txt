@@ -1,0 +1,10 @@
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\bin\Debug\ToggleSwitch.dll
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\bin\Debug\ToggleSwitch.pdb
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\ToggleSwitch.csprojResolveAssemblyReference.cache
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\ToggleSwitch_MarkupCompile.cache
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\ToggleSwitch_MarkupCompile.lref
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\Themes\Generic.baml
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\ToggleSwitch.g.resources
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\ToggleSwitch.dll
+E:\Sefalogy\ToggleSwitchDemo\toggle-switch-control-master\toggle-switch-control-master\WPF\ToggleSwitch\obj\Debug\ToggleSwitch.pdb
