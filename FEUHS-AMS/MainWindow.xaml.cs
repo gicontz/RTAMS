@@ -115,6 +115,32 @@ namespace FEUHS_AMS
             }
             
             UserInterface.controlVisit(settings_sections, sender, e, section_panels, grids, section_labels, (Brush)bc.ConvertFrom("#ff311b92"));
+
+            Grid gd = sender as Grid;
+
+            switch (gd.Name)
+            {
+                case "database":
+                    database_panel.Visibility = Visibility.Visible;
+                    log_panel.Visibility = Visibility.Hidden;
+                    accounts_panel.Visibility = Visibility.Hidden;
+                    break;
+
+                case "log":
+                    database_panel.Visibility = Visibility.Hidden;
+                    log_panel.Visibility = Visibility.Visible;
+                    accounts_panel.Visibility = Visibility.Hidden;
+                    break;
+
+                case "accounts":
+                    database_panel.Visibility = Visibility.Hidden;
+                    log_panel.Visibility = Visibility.Hidden;
+                    accounts_panel.Visibility = Visibility.Visible;
+                    break;
+                default:
+
+                break;
+            }
         }
         
         private void databaseConnectionChange(object sender, RoutedEventArgs e)

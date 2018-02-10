@@ -76,7 +76,9 @@
                 </Grid>
                 <Rectangle Fill="#FF190863" HorizontalAlignment="Left" Height="8" Margin="0,64,0,0" Stroke="Black" VerticalAlignment="Top" Width="733" Grid.ColumnSpan="2" StrokeThickness="0"/>
             </Grid>
-            <Grid x:Name="database_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733">
+            <Grid x:Name="database_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733" Visibility="Hidden">
+                <Button x:Name="button" Content="Attendance" HorizontalAlignment="Left" Margin="584,58,0,0" VerticalAlignment="Top" Width="122" Click="showAttendance"/>
+                <Label x:Name="label6" Content="Online" HorizontalAlignment="Left" Height="24" Margin="567,9,0,0" VerticalAlignment="Top" Width="54"/>
                 <ToggleSwitch:HorizontalToggleSwitch x:Name="online_switch"
                     BorderBrush="#FFFFFF"
                     Width="78" 
@@ -97,9 +99,14 @@
                         </LinearGradientBrush>
                     </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
                 </ToggleSwitch:HorizontalToggleSwitch>
+                <Label x:Name="titledb" Content="DATABASE" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="103" FontSize="16" Foreground="#DDFFFFFF"/>
             </Grid>
-            <Label x:Name="label6" Content="Online" HorizontalAlignment="Left" Height="24" Margin="572,83,0,0" VerticalAlignment="Top" Width="54"/>
-            <Button x:Name="button" Content="Attendance" HorizontalAlignment="Left" Margin="584,128,0,0" VerticalAlignment="Top" Width="122" Click="showAttendance"/>
+            <Grid x:Name="log_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733" Visibility="Hidden">
+                <Label x:Name="label7" Content="LOGS" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="103" FontSize="16" Foreground="#DDFFFFFF"/>
+            </Grid>
+            <Grid x:Name="accounts_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733" Visibility="Hidden">
+                <Label x:Name="label8" Content="ACCOUNTS" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="103" FontSize="16" Foreground="#DDFFFFFF"/>
+            </Grid>
         </Grid>
         <Label x:Name="attendance_section" Content="ATTENDANCE" Margin="0,72,0,0" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="21" Background="#FF00C853" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="sectionActive" MouseLeftButtonDown="sectionChange" MouseLeave="sectionLeave" VerticalAlignment="Top" Height="72" HorizontalAlignment="Left" Width="167"/>
         <Label x:Name="stats_section" Content="STATISTICS" Margin="0,144,0,0" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="21" Background="#FFFFCA28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="sectionActive" MouseLeftButtonDown="sectionChange" MouseLeave="sectionLeave" VerticalAlignment="Top" Height="72" HorizontalAlignment="Left" Width="167"/>
