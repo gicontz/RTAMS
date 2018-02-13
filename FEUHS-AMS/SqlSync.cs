@@ -55,17 +55,19 @@ namespace FEUHS_AMS
             }
         }
 
-        public string perfromSync()
+        public bool perfromSync()
         {
             XDLINE.isOnline = true;
-            XDLINE xdl = new XDLINE();         
+            XDLINE xdl = new XDLINE();
+            bool result = false;      
 
             List<string>[] queries = this.selectItems("dump_query_table", "query_id, query", new string[] { "query_id", "query" }, "");
             int numberOfQueries = queries[0].Count();
 
             for (int i = 0; i < numberOfQueries; i++)
             {
-                if (executeSync(queries[1].ElementAt(i)))
+                result = executeSync(queries[1].ElementAt(i));
+                if (result)
                 {
                     XDLINE.isOnline = false;
                     XDLINE xdll = new XDLINE();
@@ -73,14 +75,14 @@ namespace FEUHS_AMS
                 }
                 XDLINE.isOnline = true;
             }
-            return "";
+            XDLINE.isOnline = false;
+            return result;
         }
 
         private bool executeSync(string q)
         {
             XDLINE xdl = new XDLINE();
             string[] res = xdl.executeQuery(q);
-            if(res[1] != "") MessageBox.Show(res[1]);
             return res[0] == "Success";
         }
 

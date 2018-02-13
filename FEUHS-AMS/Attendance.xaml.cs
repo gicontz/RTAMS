@@ -23,47 +23,52 @@ namespace FEUHS_AMS
         //"+ typeof(Attendance).Namespace +"
         private string path = "pack://application:,,,/FEUHS-AMS;component/Images/";
         private CancellationTokenSource cts;
+        private int timeStatus;
+        private string mainStatus = "";
+        private string table_prefix = "";
+        private bool isStop = false;
 
         public Attendance()
         {
+            RealTimeAMS rtams = new RealTimeAMS();
             InitializeComponent();
-
+            this.timeStatus = rtams.timeState();
+            this.table_prefix = this.timeStatus == 1 ? "time_out" : "time_in";
             checkAttendance();
         }
 
 
         private async void checkAttendance()
         {
-            RealTimeAMS rtams = new RealTimeAMS();
-            for (;;)
+            while (!isStop)
             {
+                RealTimeAMS rtams = new RealTimeAMS();
                 await Task.Delay(100);
 
-                    fullname1.Content = rtams.getFullName("time_in");
+                    fullname1.Content = rtams.getFullName(this.table_prefix);
 
                     try
                     {
-                        image.Source = new BitmapImage(new Uri(path + rtams.getImage("time_in")));
+                        image.Source = new BitmapImage(new Uri(path + rtams.getImage(this.table_prefix)));
                     }
-                    catch (ArgumentException e) { }
+                    catch (ArgumentException e) { this.mainStatus = e.Message;  }
 
-                    section1.Content = rtams.getSection("time_in");
-                    stdnum1.Content = rtams.getStudentNumber("time_in");
-                    //fullname2.Content = rtams.getLastRFID("time_in"); //Test to check RFID Number
-                
+                    section1.Content = rtams.getSection(this.table_prefix);
+                    stdnum1.Content = rtams.getStudentNumber(this.table_prefix);
+                    //fullname2.Content = rtams.getLastRFID("time_in"); //Test to check RFID Number                
             }
         }
 
         private void showAdmin(object sender, MouseButtonEventArgs e)
         {
             cts = new CancellationTokenSource();
-
+            isStop = true;
             MainWindow mw = new MainWindow();
             mw.Show();
             this.Close();
             if (cts != null)
             {
-                //cts.Cancel();
+                cts.Cancel();
             }
         }
     }

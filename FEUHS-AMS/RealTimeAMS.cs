@@ -11,6 +11,12 @@ namespace FEUHS_AMS
         private string full_name;
         private string stud_number;
         private string section;
+        private string timeTable = "";
+
+        public RealTimeAMS()
+        {
+            this.timeTable = this.timeState() == 0 ? "time_in" : "time_out";
+        }
 
        public string getFullName(string table_prefix)
         {
@@ -90,12 +96,23 @@ namespace FEUHS_AMS
 
         public string getLastRFID(string table_prefix)
         {
-            if (!this.isTableEmpty("time_in")){
+            if (!this.isTableEmpty(this.timeTable)){
                 string[] time_table_id = { "rfid_number" };
                 string rfid_number = this.selectItems(table_prefix + "_table ORDER BY attendance_id DESC LIMIT 1", "rfid_number", time_table_id, "")[0].ElementAt(0);
                 return rfid_number;
             }
             return "";
+        }
+
+        public int timeState()
+        {
+            string timeState = this.selectItems("university_table", "attendance_mode", new string[] { "attendance_mode" }, "")[0].ElementAt(0);
+            return Int32.Parse(timeState);
+        }
+
+        public string changetimeState(int state)
+        {
+            return this.updateQuery("university_table", new string[] { "attendance_mode" }, new string[] { state.ToString() }, "univ_id = 1");
         }
 
 

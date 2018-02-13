@@ -116,7 +116,16 @@ namespace FEUHS_AMS
                 catch (MySqlException ex)
             {
                 results[0] = "Error";
-                results[1] = ex.ToString();
+                switch (ex.Number)
+                {
+                    case 1022:
+                        results[1] = "Cannot Write Duplicate Keys";
+                        break;
+
+                    default:
+                        results[1] = ex.ToString();
+                        break;
+                }
                 this.CloseConnection();
             }
             return results;
@@ -230,24 +239,6 @@ namespace FEUHS_AMS
                 //MessageBox.Show(configs[0]); //Testing purposes
             }
             return configs;
-        }
-
-        public int timeState()
-        {
-            int configs = 0;
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "config.ini"))
-            {
-                configs = Int32.Parse(inif.IniReadValue("attendance", "status"));
-            }
-            return configs;
-        }
-
-        public void changetimeState(int state)
-        {
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "config.ini"))
-            {
-                inif.IniWriteValue("attendance", "status", state.ToString());
-            }
         }
 
         public void createConfigurations(string un, string pw, string hn, string dbname, string state)

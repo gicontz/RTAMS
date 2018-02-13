@@ -51,6 +51,7 @@ namespace FEUHS_AMS
 
         private void initializeControls()
         {
+            RealTimeAMS rtams = new RealTimeAMS();
             section_panels.Clear();
             section_labels.Clear();
             Grid[] gs = { student_panel, attendance_panel, stats_panel, reports_panel, settings_panel, about_panel };
@@ -64,6 +65,9 @@ namespace FEUHS_AMS
             {
                 section_labels.Add(l);
             }
+
+            int status = timeStatus.IsChecked ? 0 : 1;
+            rtams.changetimeState(status);
         }
 
         private void sectionActive(object sender, MouseEventArgs e)
@@ -172,13 +176,28 @@ namespace FEUHS_AMS
         private void synchronizeDatabase(object sender, RoutedEventArgs e)
         {
             imgsync.BeginStoryboard(imgsyncStory);
-            sqlsync.perfromSync();
+            string result = sqlsync.perfromSync() ? "Database Sucessfully Synced!" : "Cannot Complete Synchronization, please try again!";
+            MessageBox.Show(result, "Synchronization", MessageBoxButton.OK, MessageBoxImage.Information);
             sqlsync.loadDumpList(dumqlList);
         }
 
         private void loadLists()
         {
             sqlsync.loadDumpList(dumqlList);
+        }
+
+        private void renewDatabase(object sender, RoutedEventArgs e)
+        {
+            imgsync.BeginStoryboard(imgsyncStory1);
+            xdl.executeQuery("TRUNCATE TABLE `time_in_table`; TRUNCATE TABLE `time_out_table`");
+        }
+
+        private void timeStatusChanged(object sender, RoutedEventArgs e)
+        {
+            HorizontalToggleSwitch swits = sender as HorizontalToggleSwitch;
+            RealTimeAMS rtams = new RealTimeAMS();
+            int status = swits.IsChecked ? 0 : 1;
+            rtams.changetimeState(status);
         }
     }
 }
