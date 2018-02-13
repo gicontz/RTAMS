@@ -15,6 +15,12 @@
         FontFamily="Montserrat"
         mc:Ignorable="d"
         Title="MainWindow" Height="430.833" Width="900" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal">
+    <Window.Resources>
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid x:Name="about_panel" Margin="167,0,0,0" Background="#FF77C9D6" Height="Auto">
             <Grid Height="72" VerticalAlignment="Top" Background="#FF2CB2C7">
@@ -76,7 +82,7 @@
                 </Grid>
                 <Rectangle Fill="#FF190863" HorizontalAlignment="Left" Height="8" Margin="0,64,0,0" Stroke="Black" VerticalAlignment="Top" Width="733" Grid.ColumnSpan="2" StrokeThickness="0"/>
             </Grid>
-            <Grid x:Name="database_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733" Visibility="Hidden">
+            <Grid x:Name="database_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733">
                 <Button x:Name="button" Content="Attendance" HorizontalAlignment="Left" Margin="584,58,0,0" VerticalAlignment="Top" Width="122" Click="showAttendance"/>
                 <Label x:Name="label6" Content="Online" HorizontalAlignment="Left" Height="24" Margin="567,9,0,0" VerticalAlignment="Top" Width="54"/>
                 <ToggleSwitch:HorizontalToggleSwitch x:Name="online_switch"
@@ -100,6 +106,44 @@
                     </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
                 </ToggleSwitch:HorizontalToggleSwitch>
                 <Label x:Name="titledb" Content="DATABASE" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="103" FontSize="16" Foreground="#DDFFFFFF"/>
+                <ListView x:Name="dumqlList" HorizontalAlignment="Left" Height="219" Margin="10,58,0,0" VerticalAlignment="Top" Width="554">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Dump ID" Width="100" DisplayMemberBinding="{Binding DumpID}"/>
+                            <GridViewColumn Header="Usage" Width="250" DisplayMemberBinding="{Binding Usage}"/>
+                            <GridViewColumn Header="Remarks" Width="150" DisplayMemberBinding="{Binding Remarks}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Button x:Name="sync" HorizontalAlignment="Left" Margin="584,104,0,0" VerticalAlignment="Top" Width="122" Click="synchronizeDatabase">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Images/refresh.png" 
+                        RenderTransformOrigin=".5,.5"
+                   Height="15" x:Name="imgsync">
+                            <Image.RenderTransform>
+                                <RotateTransform x:Name="AnimatedRotateTransform" Angle="0" />
+                            </Image.RenderTransform>
+                            <Image.Triggers>
+                                <EventTrigger RoutedEvent="Control.MouseDown">
+                                        <BeginStoryboard>
+                                        <Storyboard x:Name="imgsyncStory">
+                                                <DoubleAnimation Storyboard.TargetName="AnimatedRotateTransform" 
+                                                 Storyboard.TargetProperty="Angle" 
+                                                 By="10"        
+                                                 To="360" 
+                                                 Duration="0:0:0.5" 
+                                                 FillBehavior="Stop" 
+                                                             RepeatBehavior="0:0:5"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                           </Image.Triggers>
+                        </Image>
+                        <TextBlock Padding="5,0,0,0" x:Name="syncText"><Run Text="Sync"/></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                
             </Grid>
             <Grid x:Name="log_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733" Visibility="Hidden">
                 <Label x:Name="label7" Content="LOGS" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="103" FontSize="16" Foreground="#DDFFFFFF"/>

@@ -29,7 +29,7 @@ namespace FEUHS_AMS
         private string[] settings_sections = {"log", "database", "accounts" };
         private UserInterface systemui;
         private XDLINE xdl;
-        private XDLINE xdl_online;
+        private SqlSync sqlsync = new SqlSync();
 
         public MainWindow()
         {
@@ -41,6 +41,7 @@ namespace FEUHS_AMS
             initializeControls();
 
             XDLINE.isOnline = online_switch.IsChecked;
+            sqlsync.loadDumpList(dumqlList);
 
             //MessageBox.Show(xdl_offline.OpenConnection().ToString());
             //MessageBox.Show(xdl_online.OpenConnection().ToString());
@@ -105,6 +106,7 @@ namespace FEUHS_AMS
 
         private void settingcontrolVisit(object sender, MouseButtonEventArgs e)
         {
+            sqlsync.loadDumpList(dumqlList);
             BrushConverter bc = new BrushConverter();
             List<Grid> grids = new List<Grid>();
             Grid[] gs = { log, database, accounts };
@@ -154,7 +156,7 @@ namespace FEUHS_AMS
             MessageBoxResult mr = MessageBoxResult.Yes;
             if (XDLINE.isOnline)
             {
-                mr = MessageBox.Show("You are Currenlty Online, the real time attendance system will not work smoothly.\nProceed Anyway?", "Online Database",
+                mr = MessageBox.Show("You are Currently Online, the real time attendance system will not work smoothly.\nProceed Anyway?", "Online Database",
                     MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
             }
 
@@ -165,6 +167,18 @@ namespace FEUHS_AMS
                 this.Close();
             }
 
+        }
+
+        private void synchronizeDatabase(object sender, RoutedEventArgs e)
+        {
+            imgsync.BeginStoryboard(imgsyncStory);
+            sqlsync.perfromSync();
+            sqlsync.loadDumpList(dumqlList);
+        }
+
+        private void loadLists()
+        {
+            sqlsync.loadDumpList(dumqlList);
         }
     }
 }

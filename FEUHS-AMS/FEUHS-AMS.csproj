@@ -77,6 +77,7 @@
       <DependentUpon>Attendance.xaml</DependentUpon>
     </Compile>
     <Compile Include="RealTimeAMS.cs" />
+    <Compile Include="SqlSync.cs" />
     <Compile Include="XDLINE.cs" />
     <Compile Include="Ini.cs" />
     <Compile Include="Login.xaml.cs">
@@ -193,7 +194,9 @@
   <ItemGroup>
     <Resource Include="Images\character.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\refresh.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

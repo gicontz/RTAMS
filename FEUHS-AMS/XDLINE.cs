@@ -92,7 +92,7 @@ namespace FEUHS_AMS
         }
 
         //Execute Query
-        private string[] executeQuery(string query)
+        public string[] executeQuery(string query)
         {
             string[] results = new string[2];
                 try
@@ -226,6 +226,8 @@ namespace FEUHS_AMS
                 configs[1] = theinif.IniReadValue("database", "password");
                 configs[2] = theinif.IniReadValue("database", "hostname");
                 configs[3] = theinif.IniReadValue("database", "databasename");
+
+                //MessageBox.Show(configs[0]); //Testing purposes
             }
             return configs;
         }
@@ -368,57 +370,7 @@ namespace FEUHS_AMS
             {
                 return list;
             }
-        }            
-
-        /*public void loadProductList(ListView v, string search_item, bool isSearch) {
-
-            List<string>[] thearrayList = selectProductList(isSearch, search_item);
-
-            v.Items.Clear();
-            int i = 0;
-            string[] thenames, thexpdates, theunits;
-            int[] theids;
-            float[] theprices;
-            int numberofProducts = thearrayList.ElementAt(0).Count;
-
-            theids = new int[numberofProducts];
-            thenames = new string[numberofProducts];
-            theprices = new float[numberofProducts];
-            thexpdates = new string[numberofProducts];
-            theunits = new string[numberofProducts];
-
-            foreach (List<string> d in thearrayList)
-            {
-                int j = 0;
-                foreach (string product in d)
-                {                   
-                    switch (i)
-                    {
-                        case 0:
-                            theids[j] = Int32.Parse(product);
-                            break;
-                        case 1:
-                            thenames[j] = product;
-                            break;
-                        case 2:
-                            theprices[j] = float.Parse(product);
-                            break;
-                        case 3:
-                            thexpdates[j] = product;
-                            break;
-                        default:
-                            break;                            
-                    }
-                    j++;                                
-                }                
-                i++;
-            }
-
-            for (int h = 0; h  <= numberofProducts - 1; h++)
-            {                
-                v.Items.Add(new ProductItem { Id = theids[h], Name = thenames[h], Price = theprices[h], Exp_Date = thexpdates[h] });
-            }
-        }*/
+        }                   
 
         private SolidColorBrush setStockRemarksRow(string stock)
         {
