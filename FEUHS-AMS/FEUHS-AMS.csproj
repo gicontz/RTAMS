@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,6 +78,7 @@
       <DependentUpon>Attendance.xaml</DependentUpon>
     </Compile>
     <Compile Include="RealTimeAMS.cs" />
+    <Compile Include="sendSMS.cs" />
     <Compile Include="SqlSync.cs" />
     <Compile Include="XDLINE.cs" />
     <Compile Include="Ini.cs" />
@@ -150,7 +152,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Error.png" />

@@ -94,6 +94,11 @@ namespace FEUHS_AMS
             return student_info;
         }
 
+        public string getContactNumber(string student_number)
+        {
+            return this.selectItems("students_table", "contact_number", new string[] { "contact_number" }, "student_number = " + student_number)[0].ElementAt(0);
+        }
+
         public string getLastRFID(string table_prefix)
         {
             if (!this.isTableEmpty(this.timeTable)){

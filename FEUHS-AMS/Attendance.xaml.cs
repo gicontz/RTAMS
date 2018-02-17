@@ -27,6 +27,7 @@ namespace FEUHS_AMS
         private string mainStatus = "";
         private string table_prefix = "";
         private bool isStop = false;
+        private sendSMS sms = new sendSMS();
 
         public Attendance()
         {
@@ -35,13 +36,16 @@ namespace FEUHS_AMS
             this.timeStatus = rtams.timeState();
             this.table_prefix = this.timeStatus == 1 ? "time_out" : "time_in";
             checkAttendance();
+            sms.PortLoad("COM10");
         }
 
 
         private async void checkAttendance()
         {
+            string current = "", previous = "";
             while (!isStop)
             {
+                previous = stdnum1.Content.ToString();
                 RealTimeAMS rtams = new RealTimeAMS();
                 await Task.Delay(100);
 
@@ -55,8 +59,17 @@ namespace FEUHS_AMS
 
                     section1.Content = rtams.getSection(this.table_prefix);
                     stdnum1.Content = rtams.getStudentNumber(this.table_prefix);
-                    //fullname2.Content = rtams.getLastRFID("time_in"); //Test to check RFID Number                
+                    current = stdnum1.Content.ToString();
+
+                if (current != previous && current != "")
+                {
+                   sms.sendMsg(rtams.getContactNumber(stdnum1.Content.ToString()), "huwaw!");
+                   MessageBox.Show(rtams.getContactNumber(stdnum1.Content.ToString()));
+                }
+                //rtams.getContactNumber(stdnum1.Content.ToString());
+                //fullname2.Content = rtams.getLastRFID("time_in"); //Test to check RFID Number                
             }
+            
         }
 
         private void showAdmin(object sender, MouseButtonEventArgs e)
