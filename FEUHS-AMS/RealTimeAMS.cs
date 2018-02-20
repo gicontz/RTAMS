@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,10 +13,23 @@ namespace FEUHS_AMS
         private string stud_number;
         private string section;
         private string timeTable = "";
+        public static string serialPort = "";
 
         public RealTimeAMS()
-        {
-            this.timeTable = this.timeState() == 0 ? "time_in" : "time_out";
+        {            
+            try {
+                string checkdate = this.selectItems("time_in_table", "date_in", new string[] { "date_in" }, "date_in = \"" + DateTime.Now.ToLongDateString() + "\"")[0].ElementAt(0);
+            }
+            catch (Exception e)
+            {
+                this.executeQuery("TRUNCATE TABLE `time_in_table`; TRUNCATE TABLE `time_out_table`");
+            }
+
+            if (this.OpenConnection())
+            {
+                this.CloseConnection();
+                this.timeTable = this.timeState() == 0 ? "time_in" : "time_out";
+            }
         }
 
        public string getFullName(string table_prefix)

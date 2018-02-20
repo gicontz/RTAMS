@@ -78,8 +78,10 @@
       <DependentUpon>Attendance.xaml</DependentUpon>
     </Compile>
     <Compile Include="RealTimeAMS.cs" />
+    <Compile Include="Records.cs" />
     <Compile Include="sendSMS.cs" />
     <Compile Include="SqlSync.cs" />
+    <Compile Include="Student.cs" />
     <Compile Include="XDLINE.cs" />
     <Compile Include="Ini.cs" />
     <Compile Include="Login.xaml.cs">
@@ -203,6 +205,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic_group_add_white_48dp_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic_chat_white_48dp_2x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,7 +32,6 @@ namespace FEUHS_AMS
         {
             if ((Modem != null))
             {
-                MessageBox.Show("Pasok!");
                 result = Modem.SendSms(num, msg);
 
                 switch (result)

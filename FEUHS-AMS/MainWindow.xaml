@@ -1,4 +1,4 @@
-﻿<Window x:Class="FEUHS_AMS.MainWindow"
+﻿<Window x:Name="admin_window" x:Class="FEUHS_AMS.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ToggleSwitch="clr-namespace:ToggleSwitch;assembly=ToggleSwitch"
@@ -14,7 +14,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="Montserrat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="430.833" Width="900" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal">
+        Title="MainWindow" Height="430.833" Width="900" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal" Closing="releaseAssets_onWindowClose">
     <Window.Resources>
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Gray" />
@@ -42,61 +42,6 @@
                 <Image x:Name="statimg" HorizontalAlignment="Left" Margin="35,10,0,10" Source="Images/ic_trending_up_white_24dp_2x.png" Stretch="Fill" Width="48"/>
             </Grid>
         </Grid>
-        <Grid x:Name="attendance_panel" Margin="167,0,0,0" Background="#FF69F0AE" Height="Auto">
-            <Grid Height="72" VerticalAlignment="Top" Background="#FF00C853">
-                <Label x:Name="label5" Content="ATTENDANCE" Margin="102,20,128,12" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="24" Foreground="White"/>
-                <Image x:Name="attimg" HorizontalAlignment="Left" Margin="35,10,0,10" Source="Images/ic_mode_edit_white_24dp_2x.png" Stretch="Fill" Width="48"/>
-            </Grid>
-            <Button x:Name="button" Content="Attendance" HorizontalAlignment="Left" Margin="588,134,0,0" VerticalAlignment="Top" Width="122" Click="showAttendance"/>
-            <Button x:Name="new_att" HorizontalAlignment="Left" Margin="588,186,0,0" VerticalAlignment="Top" Width="122" Click="renewDatabase">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="Images/new.png" 
-        				RenderTransformOrigin=".5,.5"
-        				Height="15" x:Name="imgsync1">
-                        <Image.RenderTransform>
-                            <RotateTransform x:Name="AnimatedRotateTransform1" Angle="0" />
-                        </Image.RenderTransform>
-                        <Image.Triggers>
-                            <EventTrigger RoutedEvent="UIElement.MouseDown">
-                                <BeginStoryboard>
-                                    <Storyboard x:Name="imgsyncStory1">
-                                        <DoubleAnimation Storyboard.TargetName="AnimatedRotateTransform1" 
-        									Storyboard.TargetProperty="Angle" 
-        									By="10"        
-        									To="360" 
-        									Duration="0:0:0.5" 
-        									FillBehavior="Stop" 
-        									RepeatBehavior="0:0:5"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Image.Triggers>
-                    </Image>
-                    <TextBlock Padding="5,0,0,0" x:Name="syncText1" FontSize="13.333" Text="Renew"/>
-                </StackPanel>
-            </Button>
-            <ToggleSwitch:HorizontalToggleSwitch x:Name="timeStatus"
-        		BorderBrush="#FFFFFF"
-        		Width="78" 
-        		UncheckedBackground="#FF333430" 
-        		UncheckedForeground="#FF999999" 
-        		ThumbSize="38" HorizontalAlignment="Left" Margin="619,90,0,317" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat" Checked="timeStatusChanged" Unchecked="timeStatusChanged" Height="24" CheckedContent="IN" UncheckedContent="OUT" IsChecked="True">
-                <ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF3EB3EC"/>
-                        <GradientStop Color="#FF349BE6" Offset="1"/>
-                    </LinearGradientBrush>
-                </ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
-                <ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FF4D4E48"/>
-                        <GradientStop Color="#FF333430" Offset="1"/>
-                        <GradientStop Color="#FF333330" Offset="0.021"/>
-                    </LinearGradientBrush>
-                </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
-            </ToggleSwitch:HorizontalToggleSwitch>
-            <Label x:Name="label6_Copy" Content="Time:" HorizontalAlignment="Left" Height="24" Margin="571,92,0,0" VerticalAlignment="Top" Width="54"/>
-        </Grid>
         <Grid x:Name="settings_panel" Margin="167,0,0,0" Background="#FF9575CD" Height="Auto">
             <Grid Height="72" VerticalAlignment="Top" Background="#FF311B92">
                 <Label x:Name="label1" Content="SETTINGS" Margin="102,20,128,12" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="24" Foreground="White"/>
@@ -109,21 +54,25 @@
                     <ColumnDefinition Width="161*"/>
                     <ColumnDefinition Width="27*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="log" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FF311B92" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" MouseLeftButtonDown="settingcontrolVisit">
-                    <Label x:Name="label9" Content="LOG" HorizontalAlignment="Left" Margin="74,16,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="18.667"/>
+                <Grid x:Name="log" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="155" Background="#FF311B92" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" MouseLeftButtonDown="settingcontrolVisit">
+                    <Label x:Name="label9" Content="LOG" HorizontalAlignment="Left" Margin="72,20,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="16"/>
                     <Image x:Name="image3" Height="43" Margin="13,12,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_event_white_24dp_2x.png"/>
                 </Grid>
-                <Grid x:Name="accounts" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FF311B92" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="376,0,0,0" MouseLeftButtonDown="settingcontrolVisit">
-                    <Label x:Name="label10" Content="ACCOUNTS" Margin="69,18,1,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="18.667"/>
-                    <Image x:Name="image4" Height="43" Margin="15,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_supervisor_account_white_24dp_2x.png"/>
+                <Grid x:Name="accounts" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="155" Background="#FF311B92" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="310,0,0,0" MouseLeftButtonDown="settingcontrolVisit">
+                    <Label x:Name="label10" Content="ACCOUNTS" Margin="63,18,7,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="13.333"/>
+                    <Image x:Name="image4" Height="43" Margin="15,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_vpn_key_white_24dp_2x.png"/>
                 </Grid>
-                <Grid x:Name="database" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FF311B92" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="188,0,0,0" MouseLeftButtonDown="settingcontrolVisit">
-                    <Label x:Name="label12" Content="DATABASE" HorizontalAlignment="Left" Margin="60,17,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="18.667"/>
+                <Grid x:Name="database" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="155" Background="#FF311B92" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="155,0,0,0" MouseLeftButtonDown="settingcontrolVisit">
+                    <Label x:Name="label12" Content="DATABASE" HorizontalAlignment="Left" Margin="60,21,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="14.667"/>
                     <Image x:Name="image6" Height="43" Margin="11,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_build_white_24dp_2x.png"/>
+                </Grid>
+                <Grid x:Name="message" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="155" Background="#FF311B92" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="465,0,0,0" MouseLeftButtonDown="settingcontrolVisit" Grid.ColumnSpan="2">
+                    <Label x:Name="label15" Content="SMS" Margin="69,18,1,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="16"/>
+                    <Image x:Name="image7" Height="43" Margin="15,9,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_chat_white_48dp_2x.png"/>
                 </Grid>
                 <Rectangle Fill="#FF190863" HorizontalAlignment="Left" Height="8" Margin="0,64,0,0" Stroke="Black" VerticalAlignment="Top" Width="733" Grid.ColumnSpan="2" StrokeThickness="0"/>
             </Grid>
-            <Grid x:Name="database_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733">
+            <Grid x:Name="database_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733" Visibility="Hidden">
                 <Label x:Name="label6" Content="Online" HorizontalAlignment="Left" Height="24" Margin="567,9,0,0" VerticalAlignment="Top" Width="54"/>
                 <ToggleSwitch:HorizontalToggleSwitch x:Name="online_switch"
         			BorderBrush="#FFFFFF"
@@ -191,17 +140,99 @@
             <Grid x:Name="accounts_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733" Visibility="Hidden">
                 <Label x:Name="label8" Content="ACCOUNTS" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="103" FontSize="16" Foreground="#DDFFFFFF"/>
             </Grid>
+            <Grid x:Name="sms_panel" HorizontalAlignment="Left" Height="287" Margin="0,72,0,0" VerticalAlignment="Top" Width="733">
+                <Label x:Name="label16" Content="MESSAGING" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" FontSize="16" Foreground="#DDFFFFFF"/>
+                <TextBlock x:Name="time_in_text" HorizontalAlignment="Left" Margin="17,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="74" Width="407"><Run Text="[child-name] entered the school at [time-in]"/><LineBreak/><Run Text="[date]"/></TextBlock>
+                <TextBlock x:Name="time_out_text" HorizontalAlignment="Left" Margin="17,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="407"><Run Text="[child-name] entered the school at [time-in]"/><LineBreak/><Run Text="[date]"/></TextBlock>
+                <ComboBox x:Name="comport" HorizontalAlignment="Left" Height="30" Margin="533,58,0,0" VerticalAlignment="Top" Width="172" Text="Select COM PORT" DropDownClosed="gsmserialportselect"/>
+                <Label x:Name="label17" Content="Time In Message" HorizontalAlignment="Left" Margin="14,40,0,0" VerticalAlignment="Top" Width="121" FontWeight="Bold"/>
+                <Label x:Name="label17_Copy" Content="Time Out Message" HorizontalAlignment="Left" Margin="17,149,0,0" VerticalAlignment="Top" Width="134" FontWeight="Bold"/>
+                <Label x:Name="label17_Copy1" Content="GSM Serial Port" HorizontalAlignment="Left" Margin="573,40,0,0" VerticalAlignment="Top" Width="132" FontWeight="Bold"/>
+            </Grid>
+        </Grid>
+        <Grid x:Name="attendance_panel" Margin="167,0,0,0" Background="#FF69F0AE" Height="Auto">
+            <Grid Height="72" VerticalAlignment="Top" Background="#FF00C853">
+                <Label x:Name="label5" Content="ATTENDANCE" Margin="102,20,128,12" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="24" Foreground="White"/>
+                <Image x:Name="attimg" HorizontalAlignment="Left" Margin="35,10,0,10" Source="Images/ic_mode_edit_white_24dp_2x.png" Stretch="Fill" Width="48"/>
+            </Grid>
+            <Button x:Name="button" Content="Go To Queue" HorizontalAlignment="Left" Margin="588,134,0,0" VerticalAlignment="Top" Width="122" Click="showAttendance"/>
+            <Button x:Name="new_att" HorizontalAlignment="Left" Margin="588,186,0,0" VerticalAlignment="Top" Width="122" Click="renewDatabase">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Images/new.png" 
+        				RenderTransformOrigin=".5,.5"
+        				Height="15" x:Name="imgsync1">
+                        <Image.RenderTransform>
+                            <RotateTransform x:Name="AnimatedRotateTransform1" Angle="0" />
+                        </Image.RenderTransform>
+                        <Image.Triggers>
+                            <EventTrigger RoutedEvent="UIElement.MouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard x:Name="imgsyncStory1">
+                                        <DoubleAnimation Storyboard.TargetName="AnimatedRotateTransform1" 
+        									Storyboard.TargetProperty="Angle" 
+        									By="10"        
+        									To="360" 
+        									Duration="0:0:0.5" 
+        									FillBehavior="Stop" 
+        									RepeatBehavior="0:0:5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <TextBlock Padding="5,0,0,0" x:Name="syncText1" FontSize="13.333" Text="Renew"/>
+                </StackPanel>
+            </Button>
+            <ToggleSwitch:HorizontalToggleSwitch x:Name="timeStatus"
+        		BorderBrush="#FFFFFF"
+        		Width="78" 
+        		UncheckedBackground="#FF333430" 
+        		UncheckedForeground="#FF999999" 
+        		ThumbSize="38" HorizontalAlignment="Left" Margin="619,90,0,317" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat" Checked="timeStatusChanged" Unchecked="timeStatusChanged" Height="24" CheckedContent="IN" UncheckedContent="OUT" IsChecked="True">
+                <ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF3EB3EC"/>
+                        <GradientStop Color="#FF349BE6" Offset="1"/>
+                    </LinearGradientBrush>
+                </ToggleSwitch:HorizontalToggleSwitch.CheckedBackground>
+                <ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF4D4E48"/>
+                        <GradientStop Color="#FF333430" Offset="1"/>
+                        <GradientStop Color="#FF333330" Offset="0.021"/>
+                    </LinearGradientBrush>
+                </ToggleSwitch:HorizontalToggleSwitch.ThumbBrush>
+            </ToggleSwitch:HorizontalToggleSwitch>
+            <Label x:Name="label6_Copy" Content="Time:" HorizontalAlignment="Left" Height="24" Margin="571,92,0,0" VerticalAlignment="Top" Width="54"/>
+            <ListView x:Name="attendance_List" HorizontalAlignment="Left" Height="284" Margin="10,137,0,0" VerticalAlignment="Top" Width="562" SelectionChanged="student_select">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="StdNum" Width="100" DisplayMemberBinding="{Binding Student_Number}"/>
+                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding FullName}"/>
+                        <GridViewColumn Header="Program" DisplayMemberBinding="{Binding Course}"/>
+                        <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}"/>
+                        <GridViewColumn Header="Section" DisplayMemberBinding="{Binding Section}"/>
+                        <GridViewColumn Header="Time In" DisplayMemberBinding="{Binding Time_In}"/>
+                        <GridViewColumn Header="Time Out" DisplayMemberBinding="{Binding Time_Out}"/>
+                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Remarks}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
         <Grid x:Name="student_panel" Margin="167,0,0,0" Background="#FFE57373" Height="Auto">
             <Grid Height="72" VerticalAlignment="Top" Background="#FFDE2128">
                 <Label x:Name="label" Content="STUDENTS" Margin="102,20,128,12" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="24" Foreground="White"/>
                 <Image x:Name="stdimg" HorizontalAlignment="Left" Margin="35,10,0,10" Source="Images/ic_supervisor_account_white_24dp_2x.png" Stretch="Fill" Width="48"/>
             </Grid>
-            <ListView x:Name="listView" HorizontalAlignment="Left" Height="240" Margin="20,110,0,0" VerticalAlignment="Top" Width="562">
+            <ListView x:Name="studentList" HorizontalAlignment="Left" Height="240" Margin="20,110,0,0" VerticalAlignment="Top" Width="562" SelectionChanged="student_select">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Student Number" Width="150"/>
-                        <GridViewColumn Header="Name" Width="300"/>
+                        <GridViewColumn Header="Student Number" Width="150" DisplayMemberBinding="{Binding Student_Number}"/>
+                        <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding FullName}"/>
+                        <GridViewColumn Header="Program" DisplayMemberBinding="{Binding Course}"/>
+                        <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}"/>
+                        <GridViewColumn Header="Section" DisplayMemberBinding="{Binding Section}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -210,19 +241,25 @@
                     <ColumnDefinition Width="161*"/>
                     <ColumnDefinition Width="27*"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="log1" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FFDE2128" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" MouseLeftButtonDown="settingcontrolVisit">
+                <Grid x:Name="register" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FFDE2128" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" MouseLeftButtonDown="registerstudentcontrolVisit">
                     <Label x:Name="label11" Content="REGISTER" HorizontalAlignment="Left" Margin="74,16,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="18.667"/>
                     <Image x:Name="image1" Height="43" Margin="25,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_person_white_48dp_2x.png"/>
                 </Grid>
-                <Grid x:Name="database1" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FFDE2128" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="188,0,0,0" MouseLeftButtonDown="settingcontrolVisit">
+                <Grid x:Name="edit" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FFDE2128" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="188,0,0,0" MouseLeftButtonDown="settingcontrolVisit">
                     <Label x:Name="label14" Content="EDIT" HorizontalAlignment="Left" Margin="60,17,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="18.667"/>
                     <Image x:Name="image5" Height="43" Margin="11,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_mode_edit_white_24dp_2x.png"/>
                 </Grid>
+                <Grid x:Name="edit_Copy" HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="188" Background="#FFDE2128" MouseEnter="controlActive" MouseLeave="controlLeave" Cursor="Hand" Margin="377,0,0,0" MouseLeftButtonDown="settingcontrolVisit">
+                    <Label x:Name="label13" Content="NEW STUDENT" HorizontalAlignment="Left" Margin="60,17,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" Foreground="White" FontSize="14" Width="118"/>
+                    <Image x:Name="image2" Height="43" Margin="11,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="62" Source="Images/ic_group_add_white_48dp_2x.png"/>
+                </Grid>
                 <Rectangle Fill="#FFAA0E14" HorizontalAlignment="Left" Height="8" Margin="0,64,0,0" Stroke="Black" VerticalAlignment="Top" Width="733" Grid.ColumnSpan="2" StrokeThickness="0"/>
             </Grid>
-            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="615,95,0,0" VerticalAlignment="Top" Width="108">
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="602,110,0,0" VerticalAlignment="Top" Width="108">
                 <Image x:Name="image" HorizontalAlignment="Left" Height="99" Margin="0,0,-1,-1" VerticalAlignment="Top" Width="107" OpacityMask="Black"/>
             </Border>
+            <ComboBox x:Name="rfidports" HorizontalAlignment="Left" Height="30" Margin="600,320,0,0" VerticalAlignment="Top" Width="123" Text="Select COM PORT" DropDownClosed="rfidserialportselect"/>
+            <Label x:Name="label17_Copy2" Content="RFID Serial Port" HorizontalAlignment="Left" Margin="600,302,0,0" VerticalAlignment="Top" Width="123" FontWeight="Bold"/>
         </Grid>
         <Label x:Name="attendance_section" Content="ATTENDANCE" Margin="0,72,0,0" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="21" Background="#FF00C853" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="sectionActive" MouseLeftButtonDown="sectionChange" MouseLeave="sectionLeave" VerticalAlignment="Top" Height="72" HorizontalAlignment="Left" Width="167"/>
         <Label x:Name="stats_section" Content="STATISTICS" Margin="0,144,0,0" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="21" Background="#FFFFCA28" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="sectionActive" MouseLeftButtonDown="sectionChange" MouseLeave="sectionLeave" VerticalAlignment="Top" Height="72" HorizontalAlignment="Left" Width="167"/>

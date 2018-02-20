@@ -11,7 +11,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FEUHS_AMS
 {
@@ -36,7 +35,7 @@ namespace FEUHS_AMS
             this.timeStatus = rtams.timeState();
             this.table_prefix = this.timeStatus == 1 ? "time_out" : "time_in";
             checkAttendance();
-            sms.PortLoad("COM10");
+            sms.PortLoad(RealTimeAMS.serialPort);
         }
 
 
@@ -64,7 +63,6 @@ namespace FEUHS_AMS
                 if (current != previous && current != "")
                 {
                    sms.sendMsg(rtams.getContactNumber(stdnum1.Content.ToString()), "huwaw!");
-                   MessageBox.Show(rtams.getContactNumber(stdnum1.Content.ToString()));
                 }
                 //rtams.getContactNumber(stdnum1.Content.ToString());
                 //fullname2.Content = rtams.getLastRFID("time_in"); //Test to check RFID Number                

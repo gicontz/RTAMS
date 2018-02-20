@@ -65,7 +65,7 @@ namespace FEUHS_AMS
                 switch (ex.Number)
                 {
                     case 0:
-                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");                        
                         break;
 
                     case 1045:
