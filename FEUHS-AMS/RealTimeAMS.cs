@@ -13,18 +13,13 @@ namespace FEUHS_AMS
         private string stud_number;
         private string section;
         private string timeTable = "";
+        public static string time_in_format = "";
+        public static string time_out_format = "";
         public static string serialPort = "";
+        private List<string>[] student_info;
 
         public RealTimeAMS()
-        {            
-            try {
-                string checkdate = this.selectItems("time_in_table", "date_in", new string[] { "date_in" }, "date_in = \"" + DateTime.Now.ToLongDateString() + "\"")[0].ElementAt(0);
-            }
-            catch (Exception e)
-            {
-                this.executeQuery("TRUNCATE TABLE `time_in_table`; TRUNCATE TABLE `time_out_table`");
-            }
-
+        {           
             if (this.OpenConnection())
             {
                 this.CloseConnection();
@@ -102,7 +97,7 @@ namespace FEUHS_AMS
         private List<string>[] getAllStudentData(string table_prefix, string rfid_number)
         {
             string[] cols = { "student_number", "section_id", "first_name", "last_name", "middle_name", "extension", "img_src", "section_id" };
-            List<string>[] student_info = this.selectItems(table_prefix + "_table inner join students_table on " +
+            student_info = this.selectItems(table_prefix + "_table inner join students_table on " +
                 "students_table.rfid_number = " + table_prefix + "_table.rfid_number inner join users_table on students_table.user_id = users_table.user_id",
                 "*", cols, table_prefix + "_table.rfid_number =" + rfid_number);
             return student_info;

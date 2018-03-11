@@ -14,16 +14,16 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="Montserrat"
         mc:Ignorable="d"
-        Title="Attendance" Height="768" Width="1366" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
+        Title="Attendance" Height="768" Width="1366" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Icon="Images/rtams-logo.png">
     <Grid Background="#FF205333">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="222*"/>
             <ColumnDefinition Width="222*"/>
             <ColumnDefinition Width="239*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.ColumnSpan="3" Background="#FFF3B41B" Height="77" VerticalAlignment="Top">
-            <Label x:Name="label15" Content="REAL TIME ATTENDANCE MONITORING SYSTEM " Margin="135,10,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="40" Foreground="#DDFFFFFF" HorizontalAlignment="Left" Width="991" Height="57"/>
-            <Image x:Name="image1_Copy1" HorizontalAlignment="Left" Height="74" Margin="44,1,0,0" VerticalAlignment="Top" Width="64" Source="Images/logo.png" MouseLeftButtonDown="showAdmin"/>
+        <Grid Grid.ColumnSpan="3" Background="White" Height="77" VerticalAlignment="Top">
+            <Label x:Name="label15" Content="REAL TIME ATTENDANCE MONITORING SYSTEM " Margin="135,10,0,0" VerticalAlignment="Top" FontFamily="/FEUHS-AMS;component/Fonts/#Montserrat SemiBold" FontSize="40" Foreground="#DDFFFFFF" HorizontalAlignment="Left" Width="991" Height="57" Visibility="Hidden"/>
+            <Image x:Name="image1_Copy1" HorizontalAlignment="Left" Height="77" Margin="42,10,0,-10" VerticalAlignment="Top" Width="250" Source="Images/rtams-logo.png" MouseLeftButtonDown="showAdmin"/>
         </Grid>
         <Image x:Name="image" Margin="54,111,37,0" Source="Images/no_avatar.jpg" OpacityMask="#FF958C8C" Height="339" VerticalAlignment="Top" Grid.Column="1"/>
         <Image x:Name="image_Copy" Height="339" Margin="69,122,56,0" VerticalAlignment="Top" Grid.Column="2" Source="Images/no_avatar.jpg" OpacityMask="#FF958C8C" Visibility="Hidden"/>

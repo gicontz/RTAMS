@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Http;
 
 namespace FEUHS_AMS
 {
@@ -19,9 +20,41 @@ namespace FEUHS_AMS
     /// </summary>
     public partial class Login : Window
     {
+        private static readonly HttpClient client = new HttpClient();
+        private static string responseString = "";
+        private XDLINE xdl = new XDLINE();
+
         public Login()
         {
             InitializeComponent();
         }
+
+        private async void login(object sender, RoutedEventArgs e)
+        {
+            string pass = password.Password;
+            string un = username.Text;
+            responseString = await client.GetStringAsync("http://localhost/rtams-portal/lib/decrypt-pass.php?pw=" + pass);
+            List<string>[] credentials = xdl.selectItems("users_table", "username", new string[] { "username" }, "username = \"" +
+                un + "\" and password = \"" + responseString + "\" and account_type = 'admin'");
+            try
+            {
+                if(credentials[0].ElementAt(0) == un) {
+                    MainWindow mw = new MainWindow();
+                    mw.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Wrong Username or Password!", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void saveSettings(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
     }
 }
+

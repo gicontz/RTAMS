@@ -47,7 +47,7 @@ namespace FEUHS_AMS
                 previous = stdnum1.Content.ToString();
                 RealTimeAMS rtams = new RealTimeAMS();
                 await Task.Delay(100);
-
+                int ts = rtams.timeState();
                     fullname1.Content = rtams.getFullName(this.table_prefix);
 
                     try
@@ -62,7 +62,15 @@ namespace FEUHS_AMS
 
                 if (current != previous && current != "")
                 {
-                   sms.sendMsg(rtams.getContactNumber(stdnum1.Content.ToString()), "huwaw!");
+                    
+                    string[] shortcodes = { "[name]", "[date]", "[sect]", "[stdn]" };
+                    string[] values = { fullname1.Content.ToString(), DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString(), section1.Content.ToString(), stdnum1.Content.ToString()   };
+                    string message = ts == 0 ? RealTimeAMS.time_in_format : RealTimeAMS.time_out_format;
+
+                    ShortCoder sc = new ShortCoder(shortcodes, values, message);
+                    message = sc.performFormat();
+
+                    sms.sendMsg(rtams.getContactNumber(stdnum1.Content.ToString()), message);
                 }
                 //rtams.getContactNumber(stdnum1.Content.ToString());
                 //fullname2.Content = rtams.getLastRFID("time_in"); //Test to check RFID Number                

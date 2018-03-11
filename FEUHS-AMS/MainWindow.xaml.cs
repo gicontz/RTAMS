@@ -92,6 +92,9 @@ namespace FEUHS_AMS
                 section_labels.Add(l);
             }
 
+            RealTimeAMS.time_in_format = time_in_format.Text;
+            RealTimeAMS.time_out_format = time_out_format.Text;
+
             int status = timeStatus.IsChecked ? 0 : 1;
             rtams.changetimeState(status);
         }
@@ -263,7 +266,7 @@ namespace FEUHS_AMS
                 _continue = true;
                 Read();
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
@@ -326,7 +329,13 @@ namespace FEUHS_AMS
             studentList.SelectedItems.Clear();
             Student.rfid_num = "";
         }
-        
+
+        private void editStudent(object sender, MouseButtonEventArgs e)
+        {
+            StudentForm sf = new StudentForm(Student.stud_num);
+            sf.Show();
+        }
+
         private void gsmserialportselect(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;
@@ -344,6 +353,41 @@ namespace FEUHS_AMS
             if (isRfidPortLoaded)
             {
                 _serialPort.Close();
+            }
+        }
+
+        private void time_in_format_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox t = sender as TextBox;
+            RealTimeAMS.time_in_format = t.Text;
+        }
+
+        private void time_in_format_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox t = sender as TextBox;
+            RealTimeAMS.time_out_format = t.Text;
+        }
+
+        private void test_format(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            RealTimeAMS rtams = new RealTimeAMS();
+            string[] shortcodes = { "[name]", "[date]", "[sect]", "[stdn]" };
+            string[] values = { "Sample A. Name", DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString(), "Grade 1A", "201801203"};
+            string ti_format = RealTimeAMS.time_in_format;
+            string to_format = RealTimeAMS.time_out_format;
+            switch (b.Name)
+            {
+                case "time_in_test":
+                    ShortCoder sc1 = new ShortCoder(shortcodes, values, ti_format);
+                    MessageBox.Show(sc1.performFormat());
+                    break;
+                case "time_out_test":
+                    ShortCoder sc2 = new ShortCoder(shortcodes, values, to_format);
+                    MessageBox.Show(sc2.performFormat());
+                    break;
+                default:
+                    break;
             }
         }
     }

@@ -37,10 +37,10 @@ namespace FEUHS_AMS
                 switch (result)
                 {
                     case 0:
-                        MessageBox.Show("Message Sent!");
+                        //MessageBox.Show("Message Sent!");
                         break;
                     case 1:
-                        MessageBox.Show("Message Failed!");
+                        //MessageBox.Show("Message Failed!");
                         break;
                     case 2:
                         MessageBox.Show("Some parts failed to send!");
