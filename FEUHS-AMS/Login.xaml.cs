@@ -57,32 +57,14 @@ namespace FEUHS_AMS
 
         private void textBox_clear(object sender, RoutedEventArgs e)
         {
-            if (username.Text == "Username")
-            {
-                TextBox t = sender as TextBox;
-                t.Clear();
-            }
-            string p = password.Password;
-            if (p == "")
-            {
-                password.Password = "Password";
-            }
+            TextBox t = sender as TextBox;
+            t.Clear();
         }
 
         private void PassWord_clear(object sender, RoutedEventArgs e)
         {
-            if (password.Password == "Password")
-            {
-                PasswordBox t = sender as PasswordBox;
-                t.Clear();
-            }
-
-
-            string user = username.Text;
-            if (user == "")
-            {
-                username.Text = "Username";
-            }
+            PasswordBox t = sender as PasswordBox;
+            t.Clear();
         }
     }
 }

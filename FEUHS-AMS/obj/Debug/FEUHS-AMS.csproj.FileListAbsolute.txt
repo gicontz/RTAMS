@@ -51,29 +51,3 @@ C:\Users\GHIZZO\Documents\Visual Studio 2015\Projects\FEUHS-AMS\FEUHS-AMS\obj\De
 C:\Users\GHIZZO\Documents\Visual Studio 2015\Projects\FEUHS-AMS\FEUHS-AMS\obj\Debug\FEUHS-AMS.csproj.GenerateResource.Cache
 C:\Users\GHIZZO\Documents\Visual Studio 2015\Projects\FEUHS-AMS\FEUHS-AMS\obj\Debug\StudentForm.g.cs
 C:\Users\GHIZZO\Documents\Visual Studio 2015\Projects\FEUHS-AMS\FEUHS-AMS\obj\Debug\StudentForm.baml
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\FEUHS-AMS.exe.config
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS-AMS.exe
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS-AMS.pdb
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\FEUHS-AMS.exe
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\FEUHS-AMS.pdb
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\MaterialDesignColors.dll
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\MaterialDesignThemes.Wpf.dll
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\ToggleSwitch.dll
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\MaterialDesignThemes.Wpf.pdb
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS-AMS.csprojResolveAssemblyReference.cache
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\Attendance.g.cs
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\Login.g.cs
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\MainWindow.g.cs
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\StudentForm.g.cs
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\App.g.cs
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS-AMS_MarkupCompile.cache
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS-AMS_MarkupCompile.lref
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\App.baml
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\Attendance.baml
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\Login.baml
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\MainWindow.baml
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\StudentForm.baml
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS-AMS.g.resources
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS_AMS.Properties.Resources.resources
-C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\FEUHS-AMS.csproj.GenerateResource.Cache
