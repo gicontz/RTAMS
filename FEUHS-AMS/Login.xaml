@@ -38,8 +38,8 @@
                 <ColumnDefinition Width="17*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="loginbtn" Content="LOG IN" HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="140" Grid.Column="1" Grid.Row="2" Background="#FFFDBD10" BorderBrush="#FFAC800A" Click="login"/>
-            <TextBox x:Name="username" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0,48,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="160" GotFocus="textBox_clear"/>
-            <PasswordBox x:Name="password" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="0,94,0,0" VerticalAlignment="Top" Width="160" Password="admin" GotFocus="PassWord_clear"/>
+            <TextBox x:Name="username" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="0,48,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="160" GotFocus="textBox_clear"/>
+            <PasswordBox x:Name="password" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="0,94,0,0" VerticalAlignment="Top" Width="160" Password="Password" GotFocus="PassWord_clear"/>
 
         </Grid>
         <Grid x:Name="setup_grid" Background="White" Grid.ColumnSpan="3" Margin="0,89,0,0" Visibility="Hidden" Grid.RowSpan="2">
