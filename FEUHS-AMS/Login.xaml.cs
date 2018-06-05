@@ -54,7 +54,18 @@ namespace FEUHS_AMS
         {
 
         }
-        
+
+        private void textBox_clear(object sender, RoutedEventArgs e)
+        {
+            TextBox t = sender as TextBox;
+            t.Clear();
+        }
+
+        private void PassWord_clear(object sender, RoutedEventArgs e)
+        {
+            PasswordBox t = sender as PasswordBox;
+            t.Clear();
+        }
     }
 }
 
