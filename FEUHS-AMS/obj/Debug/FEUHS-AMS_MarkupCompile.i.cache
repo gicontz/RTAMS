@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\GHIZZO\Documents\Visual Studio 2015\Projects\FEUHS-AMS\FEUHS-AMS\obj\Debug\
+C:\xampp\htdocs\RTAMS\FEUHS-AMS\obj\Debug\
 FEUHS_AMS
 none
 false
 DEBUG;TRACE
-C:\Users\GHIZZO\Documents\Visual Studio 2015\Projects\FEUHS-AMS\FEUHS-AMS\App.xaml
+C:\xampp\htdocs\RTAMS\FEUHS-AMS\App.xaml
 4593668864
 
-22-2073481434
-1970196725
+22-1934114773
+19-435890311
 Attendance.xaml;Login.xaml;MainWindow.xaml;StudentForm.xaml;
 
 True
